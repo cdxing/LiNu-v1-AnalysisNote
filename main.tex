@@ -44,6 +44,14 @@ Previous measurements from STAR at $\sqrt{s_{NN}} = 3.0$~GeV showed approximate 
 This analysis extends the $v_1$ measurements of light nuclei across the STAR FXT energy range ($\sqrt{s_{NN}} = 3.0$--7.7~GeV) and collider energies (7.7, 19.6~GeV), providing a systematic study of $A$-scaling from high baryon density (target rapidity at low energies) to lower baryon density (mid-rapidity at higher energies). Comparisons with JAM2 transport model calculations incorporating nucleon coalescence provide theoretical context.
 
 %==============================================================================
+% CONFIG FILE REFERENCES (for internal use):
+%   3.0 GeV FXT: /Users/dchenmac/dchen/ana/3p0_3p85GeV_2018/v1/TreeAnalysis/plotting/Systematics/systematic/configFiles/config_3p0GeV.txt (Nov 3, 2025)
+%   3.2 GeV FXT: /Users/dchenmac/dchen/ana/3p2_4p59GeV_2019/v1/TreeAnalysis/plotting/03042024NewCorrectionNormal/config_3p2GeV.txt (nominal)
+%   4.5 GeV FXT: /Users/dchenmac/dchen/ana/4p5_9p8GeV_2020/v1_p24iy/TreeAnalysis/config_4p5GeV.txt (Oct 30, 2025)
+%   7.7 GeV FXT: /Users/dchenmac/dchen/ana/7p7_31p2GeV_2020/v1/TreeAnalysis/config_7p7GeV.txt (Jan 24, 2026)
+%   7.7 GeV COL: /Users/dchenmac/dchen/ana/7p7GeV_Col_2021/v1_crosscheck/TreeAnalysis/Systematics/systematic/02112026sys_Full1to16_nominal/config_7p7GeV.txt (Feb 13, 2026)
+%  19.6 GeV COL: /Users/dchenmac/dchen/ana/19GeV_2019/v1/TreeAnalysis/config_19p6GeV.txt (Feb 18, 2026)
+%==============================================================================
 \section{Dataset and Event Selection}
 \label{sec:dataset}
 %==============================================================================
@@ -93,12 +101,12 @@ Only minimum-bias triggered events are used. Events must have a well-reconstruct
 \toprule
 $\sqrt{s_{NN}}$ (GeV) & Mode & Trigger ID & $V_z$ (cm) & $V_r$ (cm) & Good Events \\
 \midrule
-3.0  & FXT & 620052 & $[198, 202]$  & $< 1.5$ & $256 \times 10^{6}$ \\
-3.2  & FXT & 680001 & $[198, 202]$  & $< 1.5$ & $159 \times 10^{6}$ \\
-4.5  & FXT & 780001 & $[198, 202]$  & $< 1.5$ & [TBD] \\
-7.7  & FXT & 780020 & $[198, 202]$  & $< 1.5$ & [TBD] \\
-7.7  & COL & 810010--810040 & $|V_z| < 70$   & $< 2.0$ & [TBD] \\
-19.6 & COL & 640001--640051 & $|V_z| < 70$   & $< 2.0$ & $443 \times 10^{6}$ \\
+3.0  & FXT & 620052 & $[198, 202]$    & $< 1.5$ & $256 \times 10^{6}$ \\
+3.2  & FXT & 680001 & $[198, 200.1]$  & $< 2.0$ & $159 \times 10^{6}$ \\
+4.5  & FXT & 740000, 740010 & $[198, 200.25]$ & $< 2.0$ & [TBD] \\
+7.7  & FXT & 770007 & $[198, 200.1]$  & $< 2.0$ & [TBD] \\
+7.7  & COL & 810010--810040 & $|V_z| < 145$   & $< 2.0$ & [TBD] \\
+19.6 & COL & 640001--640051 & $|V_z| < 70$    & $< 2.0$ & $443 \times 10^{6}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -115,25 +123,41 @@ Centrality is determined from the reference multiplicity (number of charged trac
 \label{sec:track_cuts}
 %==============================================================================
 
-Reconstructed tracks must satisfy quality criteria to ensure reliable momentum and energy-loss measurements. Table~\ref{tab:track_cuts} lists the selection criteria applied uniformly across all energies.
+Reconstructed tracks must satisfy quality criteria to ensure reliable momentum and energy-loss measurements. Most cuts are common across all energies; energy-dependent differences are listed in Table~\ref{tab:track_cuts}.
 
 \begin{table}[h]
 \centering
-\caption{TPC track quality cuts.}
+\caption{TPC track quality cuts. Common cuts apply to all energies; energy-dependent cuts are listed separately.}
 \label{tab:track_cuts}
 \begin{tabular}{lc}
 \toprule
-Variable & Requirement \\
+\multicolumn{2}{c}{\textbf{Common cuts (all energies)}} \\
 \midrule
-nHitsFit       & $\geq 15$ \\
-nHitsDedx      & $> 5$ \\
+nHitsFit           & $\geq 15$ \\
+nHitsDedx          & $> 5$ \\
 nHitsFit/nHitsPoss & $> 0.52$ \\
-DCA            & $< 3.0$~cm \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.3cm}
+
+\begin{tabular}{cccc}
+\toprule
+\multicolumn{4}{c}{\textbf{Energy-dependent cuts}} \\
+\midrule
+$\sqrt{s_{NN}}$ (GeV) & Mode & DCA (cm) & Min.\ tracks \\
+\midrule
+3.0  & FXT & $< 3.0$ & 5 \\
+3.2  & FXT & $< 3.0$ & 5 \\
+4.5  & FXT & $< 3.0$ & 2 \\
+7.7  & FXT & $< 3.0$ & 5 \\
+7.7  & COL & $< 3.0$ & 9 \\
+19.6 & COL & $< 1.0$ & 5 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The nHitsFit cut ensures sufficient tracking points for reliable momentum reconstruction. The nHitsFit/nHitsPoss ratio cut rejects split tracks from particle decays. The distance of closest approach (DCA) cut selects primary tracks originating from the collision vertex.
+The nHitsFit cut ensures sufficient tracking points for reliable momentum reconstruction. The nHitsFit/nHitsPoss ratio cut rejects split tracks from particle decays. The distance of closest approach (DCA) cut selects primary tracks originating from the collision vertex. In collider mode, DCA and minimum track cuts are tuned for each energy. At 7.7~GeV COL, the nominal DCA~$< 3.0$~cm with min.\ tracks~$\geq 9$ is used; at 19.6~GeV COL, DCA~$< 1.0$~cm with min.\ tracks~$\geq 5$.
 
 %==============================================================================
 \section{Particle Identification}
@@ -162,24 +186,47 @@ The Time-of-Flight detector measures the velocity $\beta$ of each particle, allo
 \subsection{PID Cuts by Species}
 \label{subsec:pid_cuts}
 
-Table~\ref{tab:pid_cuts} summarizes the PID criteria for each particle species.
+Table~\ref{tab:pid_nsigma} summarizes the $n\sigma$ and $z$-value criteria, which are common across all energies. For deuterons and tritons, the nuclear charge $z$-value rather than $n\sigma$ is used for TPC identification, with $|z| < 0.2$ for all species.
 
 \begin{table}[h]
 \centering
-\caption{PID selection criteria for each particle species.}
-\label{tab:pid_cuts}
-\begin{tabular}{lccc}
+\caption{TPC PID selection criteria (common to all energies).}
+\label{tab:pid_nsigma}
+\begin{tabular}{lcc}
 \toprule
-Species & $n\sigma$ cut & $m^2$ (GeV$^2/c^4$) & TOF req. \\
+Species & TPC ID method & Cut \\
 \midrule
-$p$       & $|n\sigma_p| < 2.0$ & ---                & No  \\
-$d$       & $|n\sigma_d| < 2.0$ & $2.8 < m^2 < 4.5$  & Yes \\
-$t$       & $|n\sigma_t| < 2.0$ & $6.0 < m^2 < 10.0$ & Yes \\
-$^3$He    & $|n\sigma_{^3\text{He}}| < 3.0$ & ---     & No  \\
-$^4$He    & $|n\sigma_{^4\text{He}}| < 3.0$ & ---     & No  \\
+$\pi^{\pm}$  & $n\sigma_\pi$  & $|n\sigma_\pi| < 3.0$ \\
+$K^{\pm}$    & $n\sigma_K$    & $|n\sigma_K| < 3.0$ \\
+$p$          & $n\sigma_p$    & $|n\sigma_p| < 2.0$ \\
+$d$          & $z_d$          & $|z_d| < 0.2$ \\
+$t$          & $z_t$          & $|z_t| < 0.2$ \\
+$^3$He       & $z_{^3\text{He}}$ & $|z_{^3\text{He}}| < 0.2$ \\
+$^4$He       & $z_{^4\text{He}}$ & $|z_{^4\text{He}}| < 0.2$ \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+The $m^2$ cuts from TOF are energy-dependent and are optimized from Gaussian fits to the $m^2$ distributions at each energy. Table~\ref{tab:m2_cuts} lists the $m^2$ windows for each species at each energy.
+
+\begin{table*}[ht]
+\centering
+\caption{TOF $m^2$ selection windows (GeV$^2/c^4$) by species and energy. Cuts at 4.5 and 7.7~GeV FXT are from $\pm 2\sigma$ Gaussian fits; others use standard values.}
+\label{tab:m2_cuts}
+\begin{tabular}{lcccccc}
+\toprule
+Species & 3.0 FXT & 3.2 FXT & 4.5 FXT & 7.7 FXT & 7.7 COL & 19.6 COL \\
+\midrule
+$\pi$ & $[-0.1, 0.1]$ & $[-0.1, 0.1]$ & $[-0.1, 0.1]$ & $[-0.1, 0.1]$ & $[-0.13, 0.15]$ & $[-0.1, 0.1]$ \\
+$K$   & $[0.15, 0.34]$ & $[0.15, 0.34]$ & $[0.15, 0.34]$ & $[0.15, 0.34]$ & $[0.10, 0.34]$ & $[0.15, 0.34]$ \\
+$p$   & --- & --- & $[0.73, 1.02]$ & $[0.71, 1.05]$ & $[0.64, 1.09]$ & $[0.6, 1.2]$ \\
+$d$   & $[3.15, 3.88]$ & $[3.15, 3.88]$ & $[3.05, 3.90]$ & $[3.02, 4.00]$ & $[3.03, 3.97]$ & $[3.0, 4.0]$ \\
+$t$   & $[7.01, 8.76]$ & $[7.01, 8.76]$ & $[6.4, 9.4]$   & $[6.79, 8.91]$ & $[6.36, 9.37]$ & $[7.01, 8.76]$ \\
+$^3$He & $[1.5, 2.5]$  & $[1.5, 2.5]$   & $[1.5, 2.5]$   & $[1.37, 2.40]$ & TPC only       & $[1.5, 2.5]$ \\
+$^4$He & $[2.8, 4.8]$  & $[2.8, 4.8]$   & $[2.8, 4.6]$   & $[3.02, 4.00]$ & $[3.03, 3.97]$ & $[2.8, 4.8]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
 
 %==============================================================================
 \section{Event Plane Reconstruction}
@@ -201,16 +248,49 @@ where $\phi_i$ is the azimuthal angle and $w_i$ is the weight of particle/hit $i
 \subsection{Sub-Event Configuration}
 \label{subsec:subevents}
 
-In FXT mode, the forward and backward rapidity regions have different multiplicities and flow magnitudes. We define four subevents:
-\begin{itemize}
-    \item \textbf{EPD A}: Inner rings (rows 1--8), $-5.6 < \eta < -3.5$
-    \item \textbf{EPD B}: Outer rings (rows 9--16), $-3.5 < \eta < -2.4$
-    \item \textbf{TPC A}: $\eta < \eta_{\text{mid}} - 0.05$
-    \item \textbf{TPC B}: $\eta > \eta_{\text{mid}} + 0.05$
-\end{itemize}
-The main event plane is reconstructed from EPD A, with EPD B and TPC B as reference subevents for resolution.
+In FXT mode, four subevents are defined: EPD~A (inner rings, closest to beam rapidity), EPD~B (outer rings), TPC~A (forward $\eta$), and TPC~B (backward $\eta$). The main event plane is reconstructed from EPD~A, with EPD~B and TPC~B as reference subevents for the three-subevent resolution calculation.
 
-In COL mode, the EPD east and west halves and TPC halves divided at $\eta = 0$ serve as subevents.
+In COL mode, the EPD east and west halves each cover both hemispheres, and TPC halves are divided at $\eta = 0$ with a gap ($|\eta| < 0.05$).
+
+The EPD and TPC subevent definitions vary significantly with collision energy due to the changing rapidity coverage and Lorentz boost. Tables~\ref{tab:epd_subevents} and~\ref{tab:tpc_subevents} list the energy-specific configurations.
+
+\begin{table}[h]
+\centering
+\caption{EPD subevent ring configuration by energy. In FXT mode, EPD~A uses inner (forward) rings and EPD~B uses outer rings. In COL mode, both subevents use full ring coverage of their respective EPD side.}
+\label{tab:epd_subevents}
+\begin{tabular}{ccccc}
+\toprule
+$\sqrt{s_{NN}}$ (GeV) & Mode & EPD A rows & EPD B rows & Note \\
+\midrule
+3.0  & FXT & 1--8  & 9--16 & Full ring split \\
+3.2  & FXT & 1--6  & 7--13 & Reduced coverage \\
+4.5  & FXT & 1--3  & 4--9  & Inner rings only \\
+7.7  & FXT & 1--2  & 3--4  & Innermost rings only \\
+7.7  & COL & 1--16 & 1--16 & Full East/West \\
+19.6 & COL & 1--16 & 1--16 & Full East/West \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{TPC subevent pseudorapidity ranges by energy.}
+\label{tab:tpc_subevents}
+\begin{tabular}{cccc}
+\toprule
+$\sqrt{s_{NN}}$ (GeV) & Mode & TPC A ($\eta$) & TPC B ($\eta$) \\
+\midrule
+3.0  & FXT & $[-2.0, -1.1]$  & $[-1.0, 0.0]$  \\
+3.2  & FXT & $[-2.0, -1.2]$  & $[-1.1, 0.0]$  \\
+4.5  & FXT & $[-2.0, -1.57]$ & $[-1.47, 0.0]$ \\
+7.7  & FXT & $[-0.55, -0.35]$& $[-0.3, -0.1]$ \\
+7.7  & COL & $[-1.0, -0.05]$ & $[0.05, 1.0]$  \\
+19.6 & COL & $[-1.0, -0.05]$ & $[0.05, 1.0]$  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At lower FXT energies (3.0--4.5~GeV), particles populate a wide range of negative pseudorapidity, so TPC~A and TPC~B span broad $\eta$ ranges with a small gap. At 7.7~GeV FXT, the Lorentz boost is large enough that particles cluster near mid-rapidity of the detector ($\eta \sim -0.4$), requiring narrow TPC subevents. For the EPD, as $\sqrt{s_{NN}}$ increases in FXT mode, only the innermost rings (closest to beam rapidity) have sufficient flow signal, so the subevent definition shrinks progressively.
 
 \subsection{Re-centering and Fourier Shifting}
 \label{subsec:corrections}
@@ -260,16 +340,39 @@ Results are presented as $v_1/A$ vs.\ $y_{CM}$ and $v_1/A$ vs.\ $p_T/A$ in rapid
 
 \begin{table}[h]
 \centering
-\caption{Rapidity windows for $p_T/A$-dependent analysis (in $y_{CM}$). Values are energy-dependent and correspond to approximately equal fractions of $y_{\text{beam,CM}}$.}
+\caption{Rapidity windows for $p_T/A$-dependent analysis (in $y_{CM}$). FXT values correspond to approximately equal fractions of $y_{\text{beam,CM}}$. COL mode uses symmetric positive/negative windows, where yExt mirrors yMid and yEnd mirrors yFor in opposite rapidity.}
 \label{tab:rapidity_windows}
+\begin{tabular}{cccccc}
+\toprule
+$\sqrt{s_{NN}}$ (GeV) & Mode & yMid & yFor & yExt & yEnd \\
+\midrule
+3.0  & FXT & $[0.1, 0.25]$  & $[0.25, 0.5]$  & $[0.5, 0.75]$   & $[0.75, 1.0]$   \\
+3.2  & FXT & $[0.1, 0.25]$  & $[0.25, 0.5]$  & $[0.5, 0.75]$   & $[0.75, 1.1]$   \\
+4.5  & FXT & $[0.152, 0.38]$ & $[0.38, 0.76]$ & $[0.76, 1.14]$  & $[1.14, 1.52]$  \\
+7.7  & FXT & $[0.1, 0.53]$  & $[0.53, 1.05]$ & $[1.05, 1.58]$  & $[1.58, 2.06]$  \\
+\midrule
+7.7  & COL & $[0.0, 0.6]$   & $[0.6, 1.045]$ & $[1.045, 1.568]$ & $[1.568, 2.09]$ \\
+19.6 & COL & $[0.0, 0.6]$   & $[0.6, 1.52]$  & $[-0.6, 0.0]$   & $[-1.52, -0.6]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:proton_acceptance} summarizes the proton acceptance for the $v_1/A$ vs.\ $y_{CM}$ measurement, which differs significantly between energies.
+
+\begin{table}[h]
+\centering
+\caption{Proton acceptance cuts for $v_1$ vs.\ rapidity measurement. The $p_T$ range varies with energy to match available phase space and ensure high PID purity.}
+\label{tab:proton_acceptance}
 \begin{tabular}{ccccc}
 \toprule
-$\sqrt{s_{NN}}$ (GeV) & yMid & yFor & yExt & yEnd \\
+$\sqrt{s_{NN}}$ (GeV) & Mode & $y_{CM}$ range & $p_T$ (GeV/$c$) & $p_T/A$ for LiNu \\
 \midrule
-3.0  & $[0.1, 0.25]$ & $[0.25, 0.5]$ & $[0.5, 0.75]$  & $[0.75, 1.0]$  \\
-3.2  & $[0.1, 0.25]$ & $[0.25, 0.5]$ & $[0.5, 0.75]$  & $[0.75, 1.1]$  \\
-4.5  & $[0.15, 0.38]$ & $[0.38, 0.76]$ & $[0.76, 1.14]$ & $[1.14, 1.52]$ \\
-7.7  & $[0.1, 0.53]$ & $[0.53, 1.05]$ & $[1.05, 1.58]$ & $[1.58, 2.10]$ \\
+3.0  & FXT & $[0, 1.0]$     & $[0.4, 0.62]$ & $[0.4, 0.62]$ \\
+3.2  & FXT & $[0, 1.1]$     & $[0.4, 0.62]$ & $[0.4, 0.62]$ \\
+4.5  & FXT & $[0, 1.52]$    & $[0.4, 0.8]$  & $[0.4, 0.8]$ \\
+7.7  & FXT & $[0, 2.06]$    & $[0.4, 0.62]$ & $[0.4, 0.8]$ \\
+7.7  & COL & $[-1.5, 1.5]$  & $[0.4, 2.0]$  & $[0.4, 0.8]$ \\
+19.6 & COL & $[-1.5, 1.5]$  & $[0.4, 2.0]$  & $[0.4, 0.8]$ \\
 \bottomrule
 \end{tabular}
 \end{table}
