@@ -23,7 +23,7 @@
 \date{\today}
 
 \begin{abstract}
-This analysis note describes the measurement of directed flow ($v_1$) for protons and light nuclei (deuterons, tritons, $^3$He, $^4$He) in Au+Au collisions at $\sqrt{s_{NN}} = 3.0$, 3.2, 4.5, and 7.7~GeV in fixed-target mode and 7.7 and 19.6~GeV in collider mode at STAR. The first-order event plane is reconstructed from the Event Plane Detector (EPD) using the three-subevent method with re-centering and Fourier shift corrections. Results are presented as $v_1/A$ vs.\ rapidity and $v_1/A$ vs.\ $p_T/A$ and compared with JAM2+coalescence model calculations. The atomic mass number ($A$) scaling predicted by the nucleon coalescence model is tested as a function of rapidity and collision energy. We observe approximate $A$-scaling at low energies near target rapidity, with systematic deviations emerging at mid-rapidity and higher energies.
+This analysis note describes the measurement of directed flow ($v_1$) for protons and light nuclei (deuterons, tritons, $^3$He, $^4$He) in Au+Au collisions at $\sqrt{s_{NN}} = 3.0$, 3.2, 4.5, and 7.7~GeV in fixed-target mode and 7.7 and 19.6~GeV in collider mode at STAR. The first-order event plane is reconstructed from the Event Plane Detector (EPD) using the three-subevent method (FXT) or two-subevent method (COL) with re-centering and Fourier shift corrections. Results are presented as $v_1/A$ vs.\ rapidity and $v_1/A$ vs.\ $p_T/A$ and compared with JAM1+coalescence model calculations. The atomic mass number ($A$) scaling predicted by the nucleon coalescence model is tested as a function of rapidity and collision energy. We observe approximate $A$-scaling at low energies near mid-rapidity, with systematic deviations emerging at target rapidity with a reverse mass ordering. At higher energies, $A$-scaling breaks down progressively.
 \end{abstract}
 
 \maketitle
@@ -43,7 +43,7 @@ so that $v_1/A$ should be species-independent at the same rapidity and $p_T/A$.
 
 Previous measurements from STAR at $\sqrt{s_{NN}} = 3.0$~GeV showed approximate $A$-scaling for $v_1$ but clear breaking for $v_2$~\cite{STAR:2021yiu}. The HADES Collaboration reported deviations from simple $A$-scaling in the few-GeV regime~\cite{HADES:2020lob}. Measurements at $\sqrt{s_{NN}} = 7.7$--27~GeV (BES-II, collider mode) show that light nuclei $v_1$ slopes are positive and follow a smooth energy dependence, with no clear $A$-scaling observed~\cite{Wang:2026}.
 
-This analysis extends the $v_1$ measurements of light nuclei across the STAR FXT energy range ($\sqrt{s_{NN}} = 3.0$--7.7~GeV) and collider energies (7.7, 19.6~GeV), providing a systematic study of $A$-scaling from high baryon density (target rapidity at low energies) to lower baryon density (mid-rapidity at higher energies). Comparisons with JAM2 transport model calculations incorporating nucleon coalescence provide theoretical context.
+This analysis extends the $v_1$ measurements of light nuclei across the STAR FXT energy range ($\sqrt{s_{NN}} = 3.0$--7.7~GeV) and collider energies (7.7, 19.6~GeV), providing a systematic study of $A$-scaling from high baryon density (target rapidity at low energies) to lower baryon density (mid-rapidity at higher energies). Comparisons with JAM1 transport model calculations incorporating nucleon coalescence provide theoretical context.
 
 %==============================================================================
 % CONFIG FILE REFERENCES (for internal use):
@@ -425,20 +425,20 @@ The Barlow check~\cite{Barlow:2002yb} identifies significant variations:
 The systematic uncertainty in each bin is the standard deviation of all significant variations.
 
 %==============================================================================
-\section{Model Comparison: JAM2 + Coalescence}
+\section{Model Comparison: JAM1 + Coalescence}
 \label{sec:model}
 %==============================================================================
 
-Data are compared with JAM2~\cite{Nara:2019qfd}, the C++ implementation of the JAM hadronic transport model, using:
+Data are compared with JAM1~\cite{Nara:2019qfd}, the Fortran implementation of the JAM hadronic transport model, using:
 \begin{itemize}
     \item RQMD.RMF mean field (momentum-dependent, MD2 parametrization)
-    \item Built-in nucleon coalescence: $R_0 = 3.0$~fm, $P_0 = 0.25$~GeV/$c$
+    \item Afterburner nucleon coalescence: $R_0 = 4.0$~fm, $P_0 = 0.3$~GeV/$c$
     \item $\sim 10^6$ events per energy
 \end{itemize}
 
 Centrality is defined by impact parameter cuts. Flow is computed using the known reaction plane.
 
-Note: the JAM1 afterburner coalescence uses different parameters ($R_0 = 3.575$~fm, $P_0 = 0.285$~GeV/$c$), resulting in a larger coalescence phase-space volume. A comparison of both parameter sets is planned.
+Note: the JAM2 (C++ rewrite) built-in coalescence uses different parameters ($R_0 = 3.0$~fm, $P_0 = 0.25$~GeV/$c$), resulting in a smaller coalescence phase-space volume. JAM2 comparisons are planned as a future cross-check.
 
 Code: JAM1 (\url{https://github.com/ynara305/jam1}), JAM2 (\url{https://gitlab.com/transportmodel/jam2}).
 
@@ -458,13 +458,13 @@ At the lowest FXT energies, where baryon stopping is strongest and the produced 
 
 A reverse mass ordering is observed at target rapidity: heavier species (tritons, $^3$He) show slightly larger $v_1/A$ than protons at the same $y_{CM}$. This ordering, opposite to what is seen for $v_2$, arises because heavier fragments are preferentially formed from nucleons at the highest densities where the mean field generates the strongest sideward push.
 
-JAM2 with built-in coalescence ($R_0 = 3.0$~fm, $P_0 = 0.25$~GeV/$c$) reproduces the approximate $A$-scaling at mid-rapidity. However, the model underestimates the magnitude of the mass splitting at target rapidity, suggesting that the coalescence parameters or the underlying mean-field dynamics require further tuning in the high-density region.
+JAM1 with afterburner coalescence ($R_0 = 4.0$~fm, $P_0 = 0.3$~GeV/$c$) reproduces the approximate $A$-scaling at mid-rapidity. However, the model underestimates the magnitude of the mass splitting at target rapidity, suggesting that the coalescence parameters or the underlying mean-field dynamics require further tuning in the high-density region.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_y_3p0GeV.pdf}
-\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_y_3p2GeV.pdf}
-\caption{$v_1/A$ vs.\ $y_{CM}$ for protons and light nuclei at $\sqrt{s_{NN}} = 3.0$~GeV (left) and 3.2~GeV (right) in 10--40\% centrality Au+Au FXT collisions. Bands show JAM2+coalescence calculations.}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_y_3p0GeV.png}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_y_3p2GeV.png}
+\caption{$v_1/A$ vs.\ $y_{CM}$ for protons and light nuclei at $\sqrt{s_{NN}} = 3.0$~GeV (left) and 3.2~GeV (right) in 10--40\% centrality Au+Au FXT collisions. Bands show JAM1+coalescence calculations.}
 \label{fig:v1_vs_y_3GeV}
 \end{figure}
 
@@ -474,12 +474,12 @@ At 4.5~GeV, the collision system enters a crossover regime. Near mid-rapidity ($
 
 At forward rapidity ($y_{CM}/y_{\text{beam}} > 0.5$), approximate $A$-scaling is partially restored, though the reverse mass ordering persists and is even more pronounced than at 3.0 and 3.2~GeV. The coexistence of $A$-scaling breaking at mid-rapidity with approximate scaling at target rapidity makes 4.5~GeV a particularly informative energy for disentangling coalescence dynamics from mean-field effects.
 
-JAM2+coalescence underpredicts the $p_T/A$ slope of $v_1/A$ at this energy, particularly for light nuclei. The model captures the qualitative trend of larger $v_1/A$ at target rapidity but misses the quantitative magnitude of the species splitting at mid-rapidity.
+JAM1+coalescence underpredicts the $p_T/A$ slope of $v_1/A$ at this energy, particularly for light nuclei. The model captures the qualitative trend of larger $v_1/A$ at target rapidity but misses the quantitative magnitude of the species splitting at mid-rapidity.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.65\textwidth]{figures/v1overA_vs_y_4p5GeV.pdf}
-\caption{$v_1/A$ vs.\ $y_{CM}$ for protons and light nuclei at $\sqrt{s_{NN}} = 4.5$~GeV in 10--40\% centrality Au+Au FXT collisions. Bands show JAM2+coalescence calculations.}
+\includegraphics[width=0.65\textwidth]{figures/v1overA_vs_y_4p5GeV.png}
+\caption{$v_1/A$ vs.\ $y_{CM}$ for protons and light nuclei at $\sqrt{s_{NN}} = 4.5$~GeV in 10--40\% centrality Au+Au FXT collisions. Bands show JAM1+coalescence calculations.}
 \label{fig:v1_vs_y_4p5GeV}
 \end{figure}
 
@@ -489,13 +489,13 @@ At 7.7~GeV, the combined FXT and COL datasets provide complementary rapidity cov
 
 In the COL dataset at mid-rapidity, $A$-scaling is clearly broken: deuteron $v_1/A$ is systematically above proton $v_1/A$. The FXT dataset shows that at target rapidity, the reverse mass ordering persists with heavy fragments above protons. The combination of both modes reveals a continuous evolution from the target-rapidity regime (where baryon stopping dominates and flow is large) through mid-rapidity (where the flow signal weakens and coalescence correlations modify the $A$-scaling).
 
-JAM2 overestimates proton $v_1$ at mid-rapidity in the COL configuration while reproducing the FXT target-rapidity data reasonably well. This tension suggests that the RQMD.RMF mean field with $K = 380$~MeV may be too stiff at the lower baryon densities probed at mid-rapidity.
+JAM1 overestimates proton $v_1$ at mid-rapidity in the COL configuration while reproducing the FXT target-rapidity data reasonably well. This tension suggests that the RQMD.RMF mean field with $K = 380$~MeV may be too stiff at the lower baryon densities probed at mid-rapidity.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_y_7p7GeV_FXT.pdf}
-\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_y_7p7GeV_COL.pdf}
-\caption{$v_1/A$ vs.\ $y_{CM}$ for protons and light nuclei at $\sqrt{s_{NN}} = 7.7$~GeV in 10--40\% centrality Au+Au collisions. Left: FXT mode. Right: COL mode. Bands show JAM2+coalescence calculations.}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_y_7p7GeV_FXT.png}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_y_7p7GeV_COL.png}
+\caption{$v_1/A$ vs.\ $y_{CM}$ for protons and light nuclei at $\sqrt{s_{NN}} = 7.7$~GeV in 10--40\% centrality Au+Au collisions. Left: FXT mode. Right: COL mode. Bands show JAM1+coalescence calculations.}
 \label{fig:v1_vs_y_7p7GeV}
 \end{figure}
 
@@ -505,12 +505,12 @@ At 19.6~GeV, the highest collider energy in this analysis, $A$-scaling is most s
 
 This behavior cannot be explained by coalescence alone and points to additional physics: (i) space-momentum correlations in the nucleon source that bias which nucleons coalesce, (ii) mean-field effects that modify light nuclei trajectories after formation, or (iii) contributions from density fluctuations that affect protons and deuterons differently. The negative proton $v_1$ slope at 19.6~GeV is associated with the ``anti-flow'' or ``third flow component'' predicted to arise from the softening of the equation of state near a phase transition~\cite{Poskanzer:1998yz}.
 
-JAM2 overpredicts the magnitude of proton $v_1$ by approximately an order of magnitude at this energy, with the wrong curvature of $v_1(y)$. The nuclear incompressibility $K = 380$~MeV used in the RQMD.RMF parametrization is likely too stiff for the baryon densities probed at $\sqrt{s_{NN}} = 19.6$~GeV.
+JAM1 overpredicts the magnitude of proton $v_1$ by approximately an order of magnitude at this energy, with the wrong curvature of $v_1(y)$. The nuclear incompressibility $K = 380$~MeV used in the RQMD.RMF parametrization is likely too stiff for the baryon densities probed at $\sqrt{s_{NN}} = 19.6$~GeV.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.65\textwidth]{figures/v1overA_vs_y_19p6GeV.pdf}
-\caption{$v_1/A$ vs.\ $y_{CM}$ for protons and light nuclei at $\sqrt{s_{NN}} = 19.6$~GeV in 10--40\% centrality Au+Au COL collisions. Bands show JAM2+coalescence calculations.}
+\includegraphics[width=0.65\textwidth]{figures/v1overA_vs_y_19p6GeV.png}
+\caption{$v_1/A$ vs.\ $y_{CM}$ for protons and light nuclei at $\sqrt{s_{NN}} = 19.6$~GeV in 10--40\% centrality Au+Au COL collisions. Bands show JAM1+coalescence calculations.}
 \label{fig:v1_vs_y_19p6GeV}
 \end{figure}
 
@@ -529,13 +529,13 @@ At 19.6~GeV, the opposite-sign behavior seen in $v_1/A$ vs.\ $y_{CM}$ manifests 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_3p0GeV.pdf}
-\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_3p2GeV.pdf}
-\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_4p5GeV.pdf}
-\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_7p7GeV_FXT.pdf}
-\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_7p7GeV_COL.pdf}
-\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_19p6GeV.pdf}
-\caption{$v_1/A$ vs.\ $p_T/A$ for protons and light nuclei in four rapidity windows at each collision energy in 10--40\% centrality Au+Au collisions. Each panel shows a different energy/mode combination. Bands show JAM2+coalescence calculations where available.}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_3p0GeV.png}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_3p2GeV.png}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_4p5GeV.png}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_7p7GeV_FXT.png}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_7p7GeV_COL.png}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_19p6GeV.png}
+\caption{$v_1/A$ vs.\ $p_T/A$ for protons and light nuclei in four rapidity windows at each collision energy in 10--40\% centrality Au+Au collisions. Each panel shows a different energy/mode combination. Bands show JAM1+coalescence calculations where available.}
 \label{fig:v1_vs_ptA}
 \end{figure}
 
@@ -550,7 +550,7 @@ The $p_T/A$ dependence removes the ambiguity inherent in rapidity-integrated mea
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/v1overA_energy_dependence.pdf}
+\includegraphics[width=0.85\textwidth]{figures/v1overA_energy_dependence.png}
 \caption{Summary of $v_1/A$ slope ($dv_1/dy$ normalized by $A$) vs.\ $\sqrt{s_{NN}}$ for protons and light nuclei. The transition from approximate $A$-scaling at low energies to strong breaking at 19.6~GeV is evident.}
 \label{fig:energy_dependence}
 \end{figure}
@@ -565,44 +565,11 @@ We present measurements of directed flow ($v_1$) for protons, deuterons, tritons
     \item Approximate $A$-scaling of $v_1$ at $\sqrt{s_{NN}} = 3.0$ and 3.2~GeV across measured rapidity.
     \item Deviations from $A$-scaling at $\sqrt{s_{NN}} \geq 4.5$~GeV, particularly at mid-rapidity.
     \item $A$-scaling better preserved at forward (target) rapidity at all energies.
-    \item JAM2+coalescence reproduces qualitative trends; quantitative agreement depends on coalescence parameters.
+    \item JAM1+coalescence reproduces qualitative trends; quantitative agreement depends on coalescence parameters.
     \item $p_T/A$ dependence provides additional discriminating power for the coalescence mechanism.
 \end{itemize}
 
-\begin{thebibliography}{99}
-
-\bibitem{STAR:2021yiu}
-M.~S.~Abdallah \textit{et al.} (STAR Collaboration),
-Phys.\ Rev.\ C \textbf{104}, 014908 (2021).
-
-\bibitem{HADES:2020lob}
-J.~Adamczewski-Musch \textit{et al.} (HADES Collaboration),
-Phys.\ Rev.\ Lett.\ \textbf{125}, 262301 (2020).
-
-\bibitem{Wang:2026}
-M.~M.~Wang (STAR Collaboration),
-Analysis note, January 2026.
-
-\bibitem{Bichsel:2006cs}
-H.~Bichsel,
-Nucl.\ Instrum.\ Meth.\ A \textbf{562}, 154 (2006).
-
-\bibitem{Poskanzer:1998yz}
-A.~M.~Poskanzer and S.~A.~Voloshin,
-Phys.\ Rev.\ C \textbf{58}, 1671 (1998).
-
-\bibitem{Barlow:2002yb}
-R.~Barlow,
-hep-ex/0207026 (2002).
-
-\bibitem{Nara:2019qfd}
-Y.~Nara, T.~Maruyama, and H.~Stoecker,
-Phys.\ Rev.\ C \textbf{102}, 024913 (2020).
-
-\bibitem{Butler:1963}
-S.~T.~Butler and C.~A.~Pearson,
-Phys.\ Rev.\ \textbf{129}, 836 (1963).
-
-\end{thebibliography}
+\clearpage
+\bibliography{references}
 
 \end{document}
