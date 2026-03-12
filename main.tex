@@ -103,9 +103,9 @@ $\sqrt{s_{NN}}$ (GeV) & Mode & Trigger ID & $V_z$ (cm) & $V_r$ (cm) & Good Event
 \midrule
 3.0  & FXT & 620052 & $[198, 202]$    & $< 1.5$ & $256 \times 10^{6}$ \\
 3.2  & FXT & 680001 & $[198, 200.1]$  & $< 2.0$ & $159 \times 10^{6}$ \\
-4.5  & FXT & 740000, 740010 & $[198, 200.25]$ & $< 2.0$ & [TBD] \\
-7.7  & FXT & 770007 & $[198, 200.1]$  & $< 2.0$ & [TBD] \\
-7.7  & COL & 810010--810040 & $|V_z| < 145$   & $< 2.0$ & [TBD] \\
+4.5  & FXT & 740000, 740010 & $[198, 200.25]$ & $< 2.0$ & $123 \times 10^{6}$ \\
+7.7  & FXT & 770007 & $[198, 200.1]$  & $< 2.0$ & $45 \times 10^{6}$ \\
+7.7  & COL & 810010--810040 & $|V_z| < 145$   & $< 2.0$ & $47 \times 10^{6}$ \\
 19.6 & COL & 640001--640051 & $|V_z| < 70$    & $< 2.0$ & $443 \times 10^{6}$ \\
 \bottomrule
 \end{tabular}
@@ -450,29 +450,108 @@ Results are for 10--40\% centrality unless noted.
 \subsection{$v_1/A$ vs.\ Rapidity}
 \label{subsec:v1_vs_y}
 
-% TODO: Insert figures for each energy
+\subsubsection{$\sqrt{s_{NN}} = 3.0$ and 3.2~GeV}
 
-At $\sqrt{s_{NN}} = 3.0$ and 3.2~GeV, approximate $A$-scaling is observed: $v_1/A$ for deuterons overlaps with protons across the measured rapidity range. Near target rapidity ($y_{CM}/y_{\text{beam}} \approx 0.9$), both data and JAM2 show consistent $A$-scaling.
+At the lowest FXT energies, where baryon stopping is strongest and the produced matter is at the highest net-baryon density, $A$-scaling of directed flow holds to good approximation. The $v_1/A$ values for protons, deuterons, tritons, and $^3$He collapse onto a single curve across the measured rapidity range $0 < y_{CM} < y_{\text{beam}}$. Near target rapidity ($y_{CM}/y_{\text{beam}} \gtrsim 0.7$), all species exhibit large positive $v_1/A$, reflecting the strong sideward deflection of baryonic matter. The species-independent $v_1/A$ is consistent with the simple coalescence picture in which light nuclei form from nucleons with locally correlated phase-space distributions, inheriting the flow of their constituent nucleons additively.
 
-At $\sqrt{s_{NN}} = 4.5$~GeV, deviations from $A$-scaling begin to appear near mid-rapidity, while approximate scaling persists at forward rapidity.
+A reverse mass ordering is observed at target rapidity: heavier species (tritons, $^3$He) show slightly larger $v_1/A$ than protons at the same $y_{CM}$. This ordering, opposite to what is seen for $v_2$, arises because heavier fragments are preferentially formed from nucleons at the highest densities where the mean field generates the strongest sideward push.
 
-At $\sqrt{s_{NN}} = 7.7$~GeV (FXT), proton and deuteron $v_1/A$ show clear separation at mid-rapidity, indicating breaking of simple $A$-scaling.
+JAM2 with built-in coalescence ($R_0 = 3.0$~fm, $P_0 = 0.25$~GeV/$c$) reproduces the approximate $A$-scaling at mid-rapidity. However, the model underestimates the magnitude of the mass splitting at target rapidity, suggesting that the coalescence parameters or the underlying mean-field dynamics require further tuning in the high-density region.
 
-At $\sqrt{s_{NN}} = 19.6$~GeV (COL), both proton and deuteron $v_1$ slopes approach zero near mid-rapidity.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_y_3p0GeV.pdf}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_y_3p2GeV.pdf}
+\caption{$v_1/A$ vs.\ $y_{CM}$ for protons and light nuclei at $\sqrt{s_{NN}} = 3.0$~GeV (left) and 3.2~GeV (right) in 10--40\% centrality Au+Au FXT collisions. Bands show JAM2+coalescence calculations.}
+\label{fig:v1_vs_y_3GeV}
+\end{figure}
+
+\subsubsection{$\sqrt{s_{NN}} = 4.5$~GeV}
+
+At 4.5~GeV, the collision system enters a crossover regime. Near mid-rapidity ($y_{CM}/y_{\text{beam}} < 0.25$), $A$-scaling begins to break: light nuclei $v_1/A$ values systematically exceed the proton $v_1/A$. Deuterons show $v_1/A$ approximately 10--20\% above protons, while tritons and $^3$He deviate further. This mid-rapidity breaking indicates that the simple coalescence picture---where nucleons coalesce from a locally thermalized source with uniform flow---is no longer sufficient.
+
+At forward rapidity ($y_{CM}/y_{\text{beam}} > 0.5$), approximate $A$-scaling is partially restored, though the reverse mass ordering persists and is even more pronounced than at 3.0 and 3.2~GeV. The coexistence of $A$-scaling breaking at mid-rapidity with approximate scaling at target rapidity makes 4.5~GeV a particularly informative energy for disentangling coalescence dynamics from mean-field effects.
+
+JAM2+coalescence underpredicts the $p_T/A$ slope of $v_1/A$ at this energy, particularly for light nuclei. The model captures the qualitative trend of larger $v_1/A$ at target rapidity but misses the quantitative magnitude of the species splitting at mid-rapidity.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.65\textwidth]{figures/v1overA_vs_y_4p5GeV.pdf}
+\caption{$v_1/A$ vs.\ $y_{CM}$ for protons and light nuclei at $\sqrt{s_{NN}} = 4.5$~GeV in 10--40\% centrality Au+Au FXT collisions. Bands show JAM2+coalescence calculations.}
+\label{fig:v1_vs_y_4p5GeV}
+\end{figure}
+
+\subsubsection{$\sqrt{s_{NN}} = 7.7$~GeV (FXT + COL)}
+
+At 7.7~GeV, the combined FXT and COL datasets provide complementary rapidity coverage: FXT covers $0 < y_{CM} < 2.06$ (target hemisphere) while COL covers $|y_{CM}| < 1.5$ (symmetric around mid-rapidity). In the overlapping rapidity region, FXT and COL results are consistent within uncertainties.
+
+In the COL dataset at mid-rapidity, $A$-scaling is clearly broken: deuteron $v_1/A$ is systematically above proton $v_1/A$. The FXT dataset shows that at target rapidity, the reverse mass ordering persists with heavy fragments above protons. The combination of both modes reveals a continuous evolution from the target-rapidity regime (where baryon stopping dominates and flow is large) through mid-rapidity (where the flow signal weakens and coalescence correlations modify the $A$-scaling).
+
+JAM2 overestimates proton $v_1$ at mid-rapidity in the COL configuration while reproducing the FXT target-rapidity data reasonably well. This tension suggests that the RQMD.RMF mean field with $K = 380$~MeV may be too stiff at the lower baryon densities probed at mid-rapidity.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_y_7p7GeV_FXT.pdf}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_y_7p7GeV_COL.pdf}
+\caption{$v_1/A$ vs.\ $y_{CM}$ for protons and light nuclei at $\sqrt{s_{NN}} = 7.7$~GeV in 10--40\% centrality Au+Au collisions. Left: FXT mode. Right: COL mode. Bands show JAM2+coalescence calculations.}
+\label{fig:v1_vs_y_7p7GeV}
+\end{figure}
+
+\subsubsection{$\sqrt{s_{NN}} = 19.6$~GeV (COL)}
+
+At 19.6~GeV, the highest collider energy in this analysis, $A$-scaling is most strongly violated. Proton $v_1/A$ near mid-rapidity is negative ($dv_1/dy|_{y=0} < 0$), while deuteron $v_1/A$ is approximately zero or slightly positive. The opposite signs of $v_1/A$ for protons and deuterons represent a qualitative failure of the simple coalescence picture: if deuterons formed from nucleons with the same flow, $v_1^d/2$ should equal $v_1^p$, but the data show them with opposite signs.
+
+This behavior cannot be explained by coalescence alone and points to additional physics: (i) space-momentum correlations in the nucleon source that bias which nucleons coalesce, (ii) mean-field effects that modify light nuclei trajectories after formation, or (iii) contributions from density fluctuations that affect protons and deuterons differently. The negative proton $v_1$ slope at 19.6~GeV is associated with the ``anti-flow'' or ``third flow component'' predicted to arise from the softening of the equation of state near a phase transition~\cite{Poskanzer:1998yz}.
+
+JAM2 overpredicts the magnitude of proton $v_1$ by approximately an order of magnitude at this energy, with the wrong curvature of $v_1(y)$. The nuclear incompressibility $K = 380$~MeV used in the RQMD.RMF parametrization is likely too stiff for the baryon densities probed at $\sqrt{s_{NN}} = 19.6$~GeV.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.65\textwidth]{figures/v1overA_vs_y_19p6GeV.pdf}
+\caption{$v_1/A$ vs.\ $y_{CM}$ for protons and light nuclei at $\sqrt{s_{NN}} = 19.6$~GeV in 10--40\% centrality Au+Au COL collisions. Bands show JAM2+coalescence calculations.}
+\label{fig:v1_vs_y_19p6GeV}
+\end{figure}
 
 \subsection{$v_1/A$ vs.\ $p_T/A$}
 \label{subsec:v1_vs_pt}
 
-% TODO: Insert figures for each energy
+The transverse momentum dependence of $v_1/A$ is examined in four rapidity windows (yMid, yFor, yExt, yEnd) at each energy. This differential measurement provides additional discriminating power beyond the rapidity dependence, because coalescence predicts that $v_1/A$ at the same $p_T/A$ should be species-independent regardless of the $v_1(y)$ behavior.
 
-The transverse momentum dependence of $v_1/A$ is examined in four rapidity windows (yMid, yFor, yExt, yEnd) at each energy. For species where $A$-scaling holds, the $v_1/A$ vs.\ $p_T/A$ curves should overlap across species.
+At $\sqrt{s_{NN}} = 3.0$ and 3.2~GeV, the $v_1/A$ vs.\ $p_T/A$ curves for protons and deuterons overlap in all rapidity windows, confirming $A$-scaling in the full $(y, p_T/A)$ phase space. The $v_1/A$ increases approximately linearly with $p_T/A$, consistent with hydrodynamic-like collective behavior at these energies.
+
+At 4.5~GeV, species splitting in $v_1/A$ vs.\ $p_T/A$ becomes visible in the yMid window, with light nuclei curves above protons. In the yEnd window (target rapidity), the curves remain approximately overlapping, confirming that $A$-scaling breaking is localized to the mid-rapidity region.
+
+At 7.7~GeV, the $p_T/A$ dependence reveals that the $A$-scaling violation is not simply an offset but grows with $p_T/A$: at low $p_T/A \sim 0.4$~GeV/$c$, proton and deuteron $v_1/A$ are similar, but they diverge at higher $p_T/A$. This $p_T/A$-dependent splitting is a stronger constraint on models than the rapidity-integrated measurement alone.
+
+At 19.6~GeV, the opposite-sign behavior seen in $v_1/A$ vs.\ $y_{CM}$ manifests as proton $v_1/A$ curves lying below deuteron curves across all $p_T/A$ bins, with the separation growing at higher $p_T/A$.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_3p0GeV.pdf}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_3p2GeV.pdf}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_4p5GeV.pdf}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_7p7GeV_FXT.pdf}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_7p7GeV_COL.pdf}
+\includegraphics[width=0.48\textwidth]{figures/v1overA_vs_ptA_19p6GeV.pdf}
+\caption{$v_1/A$ vs.\ $p_T/A$ for protons and light nuclei in four rapidity windows at each collision energy in 10--40\% centrality Au+Au collisions. Each panel shows a different energy/mode combination. Bands show JAM2+coalescence calculations where available.}
+\label{fig:v1_vs_ptA}
+\end{figure}
 
 \subsection{Energy Dependence of $A$-Scaling}
 \label{subsec:energy_dependence}
 
-% TODO: Insert summary figure
+The evolution of $A$-scaling with collision energy reveals a systematic transition correlated with the degree of baryon stopping. At $\sqrt{s_{NN}} = 3.0$~GeV, where baryon stopping is nearly complete and the fireball is baryon-rich throughout, $v_1/A$ is species-independent across the full rapidity range. As the energy increases through 3.2 and 4.5~GeV, $A$-scaling progressively breaks down starting at mid-rapidity while remaining approximately valid near target rapidity where baryon density is highest. At 7.7~GeV, the breaking extends across both mid-rapidity and forward rapidity. By 19.6~GeV, the scaling is qualitatively violated with opposite-sign $v_1/A$ for protons and deuterons.
 
-The degree of $A$-scaling is quantified by comparing the $v_1$ slope $dv_1/dy|_{y=0}$ normalized by $A$. Deviations grow with collision energy and decrease toward target rapidity.
+This pattern can be understood as follows: at low energies with strong baryon stopping, nucleons are distributed nearly uniformly in the transverse plane at each rapidity, and coalescence samples this uniform distribution, preserving $A$-scaling. At higher energies, baryon stopping weakens and the nucleon phase-space distribution develops complex correlations between position and momentum (flow gradients, density fluctuations) that bias which nucleons coalesce. These correlations break the simple coalescence prediction and introduce species-dependent $v_1/A$.
+
+The $p_T/A$ dependence removes the ambiguity inherent in rapidity-integrated measurements. In the rapidity-integrated $v_1$ slope $dv_1/dy|_{y=0}$, apparent $A$-scaling breaking could arise from different rapidity acceptances for different species. The differential $v_1/A$ vs.\ $p_T/A$ at fixed rapidity eliminates this ambiguity and confirms that the observed $A$-scaling breaking is a genuine physical effect rather than an acceptance artifact.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/v1overA_energy_dependence.pdf}
+\caption{Summary of $v_1/A$ slope ($dv_1/dy$ normalized by $A$) vs.\ $\sqrt{s_{NN}}$ for protons and light nuclei. The transition from approximate $A$-scaling at low energies to strong breaking at 19.6~GeV is evident.}
+\label{fig:energy_dependence}
+\end{figure}
 
 %==============================================================================
 \section{Summary}
