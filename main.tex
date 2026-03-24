@@ -438,9 +438,177 @@ Data are compared with JAM1~\cite{Nara:2019qfd}, the Fortran implementation of t
 
 Centrality is defined by impact parameter cuts. Flow is computed using the known reaction plane.
 
-Note: the JAM2 (C++ rewrite) built-in coalescence uses different parameters ($R_0 = 3.0$~fm, $P_0 = 0.25$~GeV/$c$), resulting in a smaller coalescence phase-space volume. JAM2 comparisons are planned as a future cross-check.
+The JAM2 (C++ rewrite) with built-in coalescence uses different default parameters ($R_0 = 3.0$~fm, $P_0 = 0.25$~GeV/$c$), resulting in a smaller coalescence phase-space volume. To disentangle the effects of the transport model from the coalescence parameters, a systematic parameter scan is performed at 3.0~GeV, as described in Section~\ref{subsec:jam_param_scan}.
 
 Code: JAM1 (\url{https://github.com/ynara305/jam1}), JAM2 (\url{https://gitlab.com/transportmodel/jam2}).
+
+\subsection{JAM Coalescence Parameter Scan at 3.0~GeV}
+\label{subsec:jam_param_scan}
+
+To systematically separate the effects of the transport model (JAM1 vs.\ JAM2) from the coalescence parameters ($R_0$, $P_0$), four configurations are tested at $\sqrt{s_{NN}} = 3.0$~GeV. Table~\ref{tab:jam_configs} summarizes the configurations and event statistics.
+
+\begin{table}[h]
+\centering
+\caption{JAM model configurations tested at $\sqrt{s_{NN}} = 3.0$~GeV.}
+\label{tab:jam_configs}
+\begin{tabular}{ccccc}
+\toprule
+Config & Transport & $R_0$ (fm) & $P_0$ (GeV/$c$) & Events \\
+\midrule
+A & JAM1 + Coal.\ Afterburner & 4.0 & 0.3  & 2.66M \\
+B & JAM1 + Coal.\ Afterburner & 3.0 & 0.25 & 2.66M \\
+C & JAM2 MD2 + Coal.          & 3.0 & 0.25 & 570K  \\
+D & JAM2 MD2 + Coal.          & 4.0 & 0.3  & 100K  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Configs A and B isolate the effect of coalescence parameters within the same transport model (JAM1). Configs B and C isolate the effect of the transport model at the same coalescence parameters. Configs A and D compare transport models at the same (wide) coalescence parameters, and Configs C and D test the coalescence parameter sensitivity within JAM2.
+
+\subsubsection{Effect of Coalescence Parameters (Same Transport)}
+
+Comparing Configs A and B (both JAM1, wide vs.\ tight coalescence) in $v_1/A$ vs.\ $y - y_{\text{mid}}$ at low $p_T/A$ (0--0.62~GeV/$c$):
+
+\begin{table}[h]
+\centering
+\caption{JAM1 coalescence parameter comparison (Config A vs.\ B) at 3.0~GeV, $v_1/A$ vs.\ $y - y_{\text{mid}}$, $p_T/A < 0.62$~GeV/$c$, centrality 10--40\%.}
+\label{tab:jam1_coal_params}
+\begin{tabular}{lcc}
+\toprule
+Species & Wide ($R_0\!=\!4.0$, $P_0\!=\!0.3$) & Tight ($R_0\!=\!3.0$, $P_0\!=\!0.25$) \\
+\midrule
+$p$      & Better (closer to data) & Overshoots (enhanced $v_1/A$) \\
+$d$      & Better & Slightly overshoots \\
+$t$      & Undershoots & Better (closer to data) \\
+$^3$He   & Undershoots & Better (closer to data) \\
+$^4$He   & Similar & Similar \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Tighter coalescence parameters ($R_0 = 3.0$~fm, $P_0 = 0.25$~GeV/$c$) enhance $v_1/A$ for all species relative to the wide parameters. This enhancement improves the description of heavier nuclei ($t$, $^3$He) but worsens the agreement for protons and deuterons, which are already well-described by the wide parameters. In the $v_1/A$ vs.\ $p_T/A$ representation, tighter parameters produce a steeper slope for both protons and deuterons, with the effect more pronounced at forward/target rapidity ($y/y_{\text{beam}} > 0.5$).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_JAM1_paramCompare.png}
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_vsPtA_JAM1_paramCompare.png}
+\caption{JAM1 coalescence parameter comparison (Config A vs.\ B) at $\sqrt{s_{NN}} = 3.0$~GeV, centrality 10--40\%. Left: $v_1/A$ vs.\ $y - y_{\text{mid}}$ at low $p_T/A$ (0--0.62~GeV/$c$). Right: $v_1/A$ vs.\ $p_T/A$ in four rapidity windows. Wide parameters ($R_0 = 4.0$, $P_0 = 0.3$) vs.\ tight parameters ($R_0 = 3.0$, $P_0 = 0.25$).}
+\label{fig:jam1_param_compare}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_vsPtA_JAM1_paramCompare_yMid.png}
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_vsPtA_JAM1_paramCompare_yFor.png}
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_vsPtA_JAM1_paramCompare_yExt.png}
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_vsPtA_JAM1_paramCompare_yEnd.png}
+\caption{JAM1 coalescence parameter comparison per rapidity window at 3.0~GeV. Top left: yMid ($0.10 \leq y/y_{\text{beam}} < 0.25$). Top right: yFor ($0.25$--$0.50$). Bottom left: yExt ($0.50$--$0.75$). Bottom right: yEnd ($0.75$--$1.00$). The parameter sensitivity increases from mid-rapidity to target rapidity.}
+\label{fig:jam1_param_compare_perY}
+\end{figure}
+
+\subsubsection{Effect of Transport Model (Same Coalescence Parameters)}
+
+Comparing Configs B and C (JAM1 vs.\ JAM2, both at $R_0 = 3.0$~fm, $P_0 = 0.25$~GeV/$c$):
+
+\begin{table}[h]
+\centering
+\caption{Transport model comparison (JAM1 vs.\ JAM2) at same coalescence parameters ($R_0\!=\!3.0$, $P_0\!=\!0.25$), 3.0~GeV, centrality 10--40\%.}
+\label{tab:jam1_vs_jam2}
+\begin{tabular}{lcc}
+\toprule
+Species & JAM1+Coal.\ (Config B) & JAM2 MD2 (Config C) \\
+\midrule
+$p$      & Overshoots at mid-$y$ & Better (closer to data) \\
+$d$      & Slightly overshoots & Slightly better \\
+$t$      & Better (closer to data) & Undershoots \\
+$^3$He   & Better (closer to data) & Undershoots \\
+$^4$He   & Better (closer to data) & Undershoots \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At the same coalescence parameters, JAM2 describes protons better than JAM1, while JAM1 provides a better description of heavier light nuclei ($t$, $^3$He, $^4$He). Neither model reproduces all species simultaneously. In the $v_1/A$ vs.\ $p_T/A$ representation, JAM2 aligns better with data overall at mid-rapidity, but both models bracket the data and diverge from each other at target rapidity ($y/y_{\text{beam}} > 0.75$).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_JAM1new_vs_JAM2.png}
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_vsPtA_JAM1new_vs_JAM2.png}
+\caption{Transport model comparison (Config B: JAM1 vs.\ Config C: JAM2) at same coalescence parameters ($R_0 = 3.0$, $P_0 = 0.25$), $\sqrt{s_{NN}} = 3.0$~GeV, centrality 10--40\%. Left: $v_1/A$ vs.\ $y - y_{\text{mid}}$ at low $p_T/A$. Right: $v_1/A$ vs.\ $p_T/A$ in four rapidity windows.}
+\label{fig:jam1_vs_jam2_same_coal}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_vsPtA_JAM1new_vs_JAM2_yMid.png}
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_vsPtA_JAM1new_vs_JAM2_yFor.png}
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_vsPtA_JAM1new_vs_JAM2_yExt.png}
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_vsPtA_JAM1new_vs_JAM2_yEnd.png}
+\caption{JAM1 vs.\ JAM2 comparison per rapidity window at 3.0~GeV, same coalescence parameters ($R_0 = 3.0$, $P_0 = 0.25$). Top left: yMid. Top right: yFor. Bottom left: yExt. Bottom right: yEnd. The model divergence increases toward target rapidity.}
+\label{fig:jam1_vs_jam2_perY}
+\end{figure}
+
+Additionally, comparing the transport models at the wide coalescence parameters (Config A vs.\ D) and the coalescence parameter sensitivity within JAM2 (Config C vs.\ D):
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_JAM1_vs_JAM2_sameCoal.png}
+\includegraphics[width=0.48\textwidth]{figures/jam_scan/v1OverA_JAM2_paramCompare.png}
+\caption{Left: JAM1 (Config A, 2.66M) vs.\ JAM2 (Config D, 100K) at same wide coalescence parameters ($R_0 = 4.0$, $P_0 = 0.3$), $v_1/A$ vs.\ $y - y_{\text{mid}}$. Right: JAM2 coalescence parameter comparison (Config C vs.\ D), same transport, different coalescence parameters. Note: Config D has limited statistics (100K events).}
+\label{fig:jam_additional_comparisons}
+\end{figure}
+
+\subsubsection{Rapidity Dependence of Model Differences}
+
+The discriminating power between JAM1 and JAM2, and between coalescence parameter sets, varies with rapidity:
+
+\begin{table}[h]
+\centering
+\caption{Rapidity dependence of model and parameter sensitivity at 3.0~GeV, $v_1/A$ vs.\ $p_T/A$.}
+\label{tab:rapidity_dependence}
+\begin{tabular}{lcc}
+\toprule
+$y/y_{\text{beam}}$ window & JAM1 vs.\ JAM2 (same coal.) & Coal.\ param.\ effect (JAM1) \\
+\midrule
+$[0.10, 0.25]$ (mid) & Both similar, bracket data & Small difference \\
+$[0.25, 0.50]$ (fwd) & JAM2 $p$ better; JAM1 nuclei better & Tight slightly higher \\
+$[0.50, 0.75]$ (ext) & Models begin to diverge & Divergence grows \\
+$[0.75, 1.00]$ (tgt) & Maximum divergence & Maximum; tight much steeper \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The forward and target rapidity regions ($y/y_{\text{beam}} > 0.5$) provide the strongest discriminating power between transport models and coalescence parameters. This is expected: at target rapidity, baryons experience the strongest mean-field gradients, amplifying differences in the underlying transport dynamics.
+
+\subsubsection{Summary: Best-Performing Configuration by Phase-Space Region}
+
+Table~\ref{tab:master_summary} identifies which configuration best describes the data in each region of phase space:
+
+\begin{table}[h]
+\centering
+\caption{Best-performing JAM configuration by species and phase-space region at $\sqrt{s_{NN}} = 3.0$~GeV, centrality 10--40\%. ``Best'' = closest to data by visual comparison.}
+\label{tab:master_summary}
+\begin{tabular}{llcc}
+\toprule
+Region & Species & Best Config & Runner-up \\
+\midrule
+Low $p_T$, mid-$y$ & $p$ & A (JAM1, wide) & C (JAM2, tight) \\
+Low $p_T$, mid-$y$ & $d$ & A (JAM1, wide) & C (JAM2, tight) \\
+Low $p_T$, mid-$y$ & $t$ & B (JAM1, tight) & A (JAM1, wide) \\
+Low $p_T$, mid-$y$ & $^3$He & B (JAM1, tight) & A (JAM1, wide) \\
+Low $p_T$, mid-$y$ & $^4$He & A (JAM1, wide) & B (JAM1, tight) \\
+\midrule
+High $p_T$, mid-$y$ & $p$ & C (JAM2, tight) & A (JAM1, wide) \\
+High $p_T$, mid-$y$ & $d$ & C (JAM2, tight) & A (JAM1, wide) \\
+\midrule
+Forward $y$ & $p$ & C (JAM2, tight) & A (JAM1, wide) \\
+Forward $y$ & nuclei & B (JAM1, tight) & A (JAM1, wide) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The key finding is that no single model configuration reproduces all species across all phase-space regions. This species-dependent performance is itself a physics result: it implies that the coalescence mechanism samples the nucleon phase space differently for different mass numbers, providing direct sensitivity to the phase-space correlations generated by the transport dynamics. The fact that the species-dependent behavior varies with rapidity (and thus with local baryon density) connects the $A$-scaling breaking to the equation of state and baryon stopping mechanism.
+
+Note: Config D (JAM2, wide parameters) has only 100K events, limiting its statistical precision. Conclusions involving Config D are preliminary.
 
 %==============================================================================
 \section{Results}
