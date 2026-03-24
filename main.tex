@@ -478,7 +478,7 @@ Comparing Configs A and B (both JAM1, wide vs.\ tight coalescence) in $v_1/A$ vs
 Species & Wide ($R_0\!=\!4.0$, $P_0\!=\!0.3$) & Tight ($R_0\!=\!3.0$, $P_0\!=\!0.25$) \\
 \midrule
 $p$      & Better (closer to data) & Overshoots (enhanced $v_1/A$) \\
-$d$      & Better & Slightly overshoots \\
+$d$      & Similar (data boxed by A and B) & Similar \\
 $t$      & Undershoots & Better (closer to data) \\
 $^3$He   & Undershoots & Better (closer to data) \\
 $^4$He   & Similar & Similar \\
@@ -486,7 +486,7 @@ $^4$He   & Similar & Similar \\
 \end{tabular}
 \end{table}
 
-Tighter coalescence parameters ($R_0 = 3.0$~fm, $P_0 = 0.25$~GeV/$c$) enhance $v_1/A$ for all species relative to the wide parameters. This enhancement improves the description of heavier nuclei ($t$, $^3$He) but worsens the agreement for protons and deuterons, which are already well-described by the wide parameters. In the $v_1/A$ vs.\ $p_T/A$ representation, tighter parameters produce a steeper slope for both protons and deuterons, with the effect more pronounced at forward/target rapidity ($y/y_{\text{beam}} > 0.5$).
+Tighter coalescence parameters ($R_0 = 3.0$~fm, $P_0 = 0.25$~GeV/$c$) enhance $v_1/A$ for all species relative to the wide parameters. This enhancement improves the description of heavier nuclei ($t$, $^3$He) but overshoots protons, which are already well-described by the wide parameters. For deuterons, the data is bracketed by the two parameter sets. In the $v_1/A$ vs.\ $p_T/A$ representation, the two parameter sets produce similar slopes for deuterons and heavier nuclei, while protons show a steeper slope with tighter parameters. The parameter sensitivity is more pronounced at forward/target rapidity ($y/y_{\text{beam}} > 0.5$).
 
 \begin{figure}[htbp]
 \centering
@@ -519,7 +519,7 @@ Comparing Configs B and C (JAM1 vs.\ JAM2, both at $R_0 = 3.0$~fm, $P_0 = 0.25$~
 Species & JAM1+Coal.\ (Config B) & JAM2 MD2 (Config C) \\
 \midrule
 $p$      & Overshoots at mid-$y$ & Better (closer to data) \\
-$d$      & Slightly overshoots & Slightly better \\
+$d$      & Better & JAM2 better at high $p_T/A$; JAM1 better at low $p_T/A$ \\
 $t$      & Better (closer to data) & Undershoots \\
 $^3$He   & Better (closer to data) & Undershoots \\
 $^4$He   & Better (closer to data) & Undershoots \\
@@ -527,7 +527,7 @@ $^4$He   & Better (closer to data) & Undershoots \\
 \end{tabular}
 \end{table}
 
-At the same coalescence parameters, JAM2 describes protons better than JAM1, while JAM1 provides a better description of heavier light nuclei ($t$, $^3$He, $^4$He). Neither model reproduces all species simultaneously. In the $v_1/A$ vs.\ $p_T/A$ representation, JAM2 aligns better with data overall at mid-rapidity, but both models bracket the data and diverge from each other at target rapidity ($y/y_{\text{beam}} > 0.75$).
+At the same coalescence parameters, JAM2 describes protons better than JAM1, while JAM1 provides a better description of deuterons (at low $p_T/A$) and heavier light nuclei ($t$, $^3$He, $^4$He). For deuterons, JAM2 is better at high $p_T/A$ while JAM1 is better at low $p_T/A$, indicating a $p_T/A$-dependent crossover. Neither model reproduces all species simultaneously. Both models bracket the data at mid-rapidity but diverge from each other at target rapidity ($y/y_{\text{beam}} > 0.75$).
 
 \begin{figure}[htbp]
 \centering
@@ -565,19 +565,19 @@ The discriminating power between JAM1 and JAM2, and between coalescence paramete
 \centering
 \caption{Rapidity dependence of model and parameter sensitivity at 3.0~GeV, $v_1/A$ vs.\ $p_T/A$.}
 \label{tab:rapidity_dependence}
-\begin{tabular}{lcc}
+\begin{tabular}{lp{5.5cm}p{4cm}}
 \toprule
 $y/y_{\text{beam}}$ window & JAM1 vs.\ JAM2 (same coal.) & Coal.\ param.\ effect (JAM1) \\
 \midrule
-$[0.10, 0.25]$ (mid) & Both similar, bracket data & Small difference \\
-$[0.25, 0.50]$ (fwd) & JAM2 $p$ better; JAM1 nuclei better & Tight slightly higher \\
-$[0.50, 0.75]$ (ext) & Models begin to diverge & Divergence grows \\
-$[0.75, 1.00]$ (tgt) & Maximum divergence & Maximum; tight much steeper \\
+$[0.10, 0.25]$ (mid) & JAM2 $p$, $d$ better; other nuclei similar & Small difference \\
+$[0.25, 0.50]$ (fwd) & JAM2 $p$ better; JAM2 $d$ at high $p_T/A$, JAM1 $d$ at low; JAM1 nuclei better & Tight slightly higher \\
+$[0.50, 0.75]$ (ext) & JAM2 better at high $p_T/A$; JAM1 at low $p_T/A$; JAM2 merges $p$+nuclei faster & Divergence grows \\
+$[0.75, 1.00]$ (tgt) & JAM2 better at high $p_T/A$; JAM1 at low $p_T/A$; JAM2 merges $p$+nuclei faster & Maximum; tight much steeper \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The forward and target rapidity regions ($y/y_{\text{beam}} > 0.5$) provide the strongest discriminating power between transport models and coalescence parameters. This is expected: at target rapidity, baryons experience the strongest mean-field gradients, amplifying differences in the underlying transport dynamics.
+The forward and target rapidity regions ($y/y_{\text{beam}} > 0.5$) provide the strongest discriminating power between transport models and coalescence parameters. At all rapidity windows, JAM2 tends to describe the high-$p_T/A$ region better while JAM1 is preferred at low $p_T/A$. Notably, JAM2 shows faster merging of proton and light nuclei $v_1/A$ at low $p_T/A$ (i.e., closer to $A$-scaling), particularly at forward rapidity. This is expected: at target rapidity, baryons experience the strongest mean-field gradients, amplifying differences in the underlying transport dynamics.
 
 \subsubsection{Summary: Best-Performing Configuration by Phase-Space Region}
 
@@ -587,21 +587,24 @@ Table~\ref{tab:master_summary} identifies which configuration best describes the
 \centering
 \caption{Best-performing JAM configuration by species and phase-space region at $\sqrt{s_{NN}} = 3.0$~GeV, centrality 10--40\%. ``Best'' = closest to data by visual comparison.}
 \label{tab:master_summary}
-\begin{tabular}{llcc}
+\begin{tabular}{llccl}
 \toprule
-Region & Species & Best Config & Runner-up \\
+Region & Species & Best Config & Runner-up & Note \\
 \midrule
-Low $p_T$, mid-$y$ & $p$ & A (JAM1, wide) & C (JAM2, tight) \\
-Low $p_T$, mid-$y$ & $d$ & A (JAM1, wide) & C (JAM2, tight) \\
-Low $p_T$, mid-$y$ & $t$ & B (JAM1, tight) & A (JAM1, wide) \\
-Low $p_T$, mid-$y$ & $^3$He & B (JAM1, tight) & A (JAM1, wide) \\
-Low $p_T$, mid-$y$ & $^4$He & A (JAM1, wide) & B (JAM1, tight) \\
+Low $p_T$, mid-$y$ & $p$ & A (JAM1, wide) & C (JAM2, tight) & \\
+Low $p_T$, mid-$y$ & $d$ & A/B bracket data & C (JAM2, tight) & Data between wide \& tight \\
+Low $p_T$, mid-$y$ & $t$ & B (JAM1, tight) & A (JAM1, wide) & \\
+Low $p_T$, mid-$y$ & $^3$He & B (JAM1, tight) & A (JAM1, wide) & \\
+Low $p_T$, mid-$y$ & $^4$He & A (JAM1, wide) & B (JAM1, tight) & \\
 \midrule
-High $p_T$, mid-$y$ & $p$ & C (JAM2, tight) & A (JAM1, wide) \\
-High $p_T$, mid-$y$ & $d$ & C (JAM2, tight) & A (JAM1, wide) \\
+High $p_T$, mid-$y$ & $p$ & C (JAM2, tight) & A (JAM1, wide) & \\
+High $p_T$, mid-$y$ & $d$ & C (JAM2, tight) & A (JAM1, wide) & \\
 \midrule
-Forward $y$ & $p$ & C (JAM2, tight) & A (JAM1, wide) \\
-Forward $y$ & nuclei & B (JAM1, tight) & A (JAM1, wide) \\
+Low $p_T$, fwd $y$ & $p$, $d$ & JAM1 & & \\
+Low $p_T$, fwd $y$ & nuclei & B (JAM1, tight) & A (JAM1, wide) & \\
+High $p_T$, fwd $y$ & $p$, $d$ & C (JAM2, tight) & & \\
+\midrule
+Target $y$ & all & \multicolumn{2}{c}{$p_T/A$-dependent crossover} & JAM2 merges $p$+nuclei faster \\
 \bottomrule
 \end{tabular}
 \end{table}
